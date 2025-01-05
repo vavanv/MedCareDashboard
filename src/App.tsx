@@ -70,6 +70,10 @@ const App = () => {
                     <Search className="w-5 h-5 text-secondary-400 absolute left-3 top-1/2 -translate-y-1/2" />
                   </div>
                   
+                  <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-secondary-600 dark:text-gray-400">
+                    <Filter className="w-5 h-5" />
+                  </button>
+                  
                   <button 
                     onClick={toggleDarkMode}
                     className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-secondary-600 dark:text-gray-400"
