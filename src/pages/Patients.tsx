@@ -36,15 +36,39 @@ export default function Patients({ onPatientClick }: PatientsProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           {[
-            { label: 'Total Patients', value: '1,234', trend: '+12% from last month', icon: Users, color: 'bg-primary-500' },
-            { label: 'New Patients', value: '89', trend: '+7% from last month', icon: UserPlus, color: 'bg-primary-500' },
-            { label: 'Critical Cases', value: '28', trend: '-3% from last month', icon: Users, color: 'bg-amber-500' },
-            { label: 'Scheduled Today', value: '42', trend: 'Same as yesterday', icon: Users, color: 'bg-green-500' }
+            { 
+              label: 'Total Patients', 
+              value: '1,234', 
+              trend: '+12% from last month', 
+              icon: Users, 
+              color: 'bg-primary-500' 
+            },
+            { 
+              label: 'New Patients', 
+              value: '89', 
+              trend: '+7% from last month', 
+              icon: UserPlus, 
+              color: 'bg-primary-500' 
+            },
+            { 
+              label: 'Critical Cases', 
+              value: '28', 
+              trend: '-3% from last month', 
+              icon: Users, 
+              color: 'bg-amber-500' 
+            },
+            { 
+              label: 'Scheduled Today', 
+              value: '42', 
+              trend: 'Same as yesterday', 
+              icon: Users, 
+              color: 'bg-green-500' 
+            }
           ].map(({ label, value, trend, icon: Icon, color }) => (
-            <div key={label} className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 p-4">
+            <div key={label} className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
               <div className="flex items-center gap-4">
-                <div className={`${color} bg-opacity-10 p-3 rounded-lg`}>
-                  <Icon className={`w-6 h-6 ${color.replace('bg-', 'text-')}`} />
+                <div className={`${color} bg-opacity-10 p-2 rounded-lg`}>
+                  <Icon className={`w-5 h-5 ${color.replace('bg-', 'text-')}`} />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-secondary-600 dark:text-gray-400">{label}</p>
