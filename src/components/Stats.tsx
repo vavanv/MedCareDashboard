@@ -7,7 +7,7 @@ const stats = [
     value: '8', 
     icon: Heart,
     change: '+2',
-    color: 'bg-red-500',
+    color: 'bg-primary-500',
     trend: 'up'
   },
   { 
@@ -40,15 +40,15 @@ export default function Stats() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       {stats.map(({ label, value, icon: Icon, change, color, trend }) => (
-        <div key={label} className="bg-white rounded-xl border border-gray-100 p-4">
+        <div key={label} className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 p-4">
           <div className="flex items-center gap-4">
             <div className={`${color} bg-opacity-10 p-3 rounded-lg`}>
               <Icon className={`w-6 h-6 ${color.replace('bg-', 'text-')}`} />
             </div>
             <div className="flex-1">
-              <p className="text-sm text-secondary-600">{label}</p>
+              <p className="text-sm text-secondary-600 dark:text-gray-400">{label}</p>
               <div className="flex items-end gap-2">
-                <p className="text-2xl font-semibold text-secondary-900">{value}</p>
+                <p className="text-2xl font-semibold text-secondary-900 dark:text-white">{value}</p>
                 <span className={`text-sm ${
                   trend === 'up' ? 'text-green-600' : 'text-red-600'
                 }`}>

@@ -14,11 +14,11 @@ export default function AppointmentList({ appointments }: AppointmentListProps) 
   };
 
   return (
-    <div className="bg-white rounded-xl border border-gray-100 p-4">
+    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 p-4">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-lg font-semibold text-secondary-900">Today's Schedule</h2>
-          <p className="text-sm text-secondary-500">March 21, 2024</p>
+          <h2 className="text-lg font-semibold text-secondary-900 dark:text-white">Today's Schedule</h2>
+          <p className="text-sm text-secondary-500 dark:text-gray-400">March 21, 2024</p>
         </div>
         <Calendar className="w-5 h-5 text-secondary-400" />
       </div>
@@ -27,13 +27,13 @@ export default function AppointmentList({ appointments }: AppointmentListProps) 
         {appointments.map((appointment) => (
           <div
             key={appointment.id}
-            className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg transition-colors"
+            className="flex items-center justify-between p-3 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
           >
             <div className="flex gap-3 items-center">
               <div className="w-2 h-2 rounded-full bg-primary-500" />
               <div>
-                <p className="font-medium text-secondary-900">{appointment.patientName}</p>
-                <div className="flex items-center gap-2 text-sm text-secondary-500">
+                <p className="font-medium text-secondary-900 dark:text-white">{appointment.patientName}</p>
+                <div className="flex items-center gap-2 text-sm text-secondary-500 dark:text-gray-400">
                   <Clock className="w-4 h-4" />
                   <span>{appointment.time}</span>
                   <span>•</span>
@@ -45,7 +45,7 @@ export default function AppointmentList({ appointments }: AppointmentListProps) 
               <span className={`px-3 py-1 rounded-full text-sm border ${statusColors[appointment.status]}`}>
                 {appointment.status}
               </span>
-              <button className="text-secondary-400 hover:text-secondary-600">
+              <button className="text-secondary-400 hover:text-secondary-600 dark:hover:text-gray-200">
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
