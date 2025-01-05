@@ -60,14 +60,14 @@ export default function PatientTable({ patients: initialPatients, onPatientClick
   };
 
   const statusColors = {
-    Stable: 'bg-green-50 text-green-700 border-green-100',
-    Critical: 'bg-red-50 text-red-700 border-red-100',
-    Recovering: 'bg-amber-50 text-amber-700 border-amber-100'
+    Stable: 'bg-green-50 text-green-700 border-green-100 dark:bg-green-900 dark:text-green-200',
+    Critical: 'bg-red-50 text-red-700 border-red-100 dark:bg-red-900 dark:text-red-200',
+    Recovering: 'bg-amber-50 text-amber-700 border-amber-100 dark:bg-amber-900 dark:text-amber-200'
   };
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-      <div className="p-4 border-b border-gray-200">
+    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+      <div className="p-4 border-b border-gray-200 dark:border-gray-700">
         <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
           <div className="relative flex-1">
             <input
@@ -75,7 +75,7 @@ export default function PatientTable({ patients: initialPatients, onPatientClick
               placeholder="Search patients..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-800 dark:text-white"
             />
             <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
           </div>
@@ -84,7 +84,7 @@ export default function PatientTable({ patients: initialPatients, onPatientClick
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-800 dark:text-white"
             >
               <option value="all">All Status</option>
               <option value="Stable">Stable</option>
@@ -97,10 +97,10 @@ export default function PatientTable({ patients: initialPatients, onPatientClick
 
       <div className="overflow-x-auto">
         <table className="w-full">
-          <thead className="bg-gray-50">
+          <thead className="bg-gray-50 dark:bg-gray-700">
             <tr>
               <th 
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer"
                 onClick={() => handleSort('name')}
               >
                 <div className="flex items-center gap-1">
@@ -109,7 +109,7 @@ export default function PatientTable({ patients: initialPatients, onPatientClick
                 </div>
               </th>
               <th 
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer"
                 onClick={() => handleSort('id')}
               >
                 <div className="flex items-center gap-1">
@@ -118,7 +118,7 @@ export default function PatientTable({ patients: initialPatients, onPatientClick
                 </div>
               </th>
               <th 
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer"
                 onClick={() => handleSort('condition')}
               >
                 <div className="flex items-center gap-1">
@@ -127,7 +127,7 @@ export default function PatientTable({ patients: initialPatients, onPatientClick
                 </div>
               </th>
               <th 
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer"
                 onClick={() => handleSort('status')}
               >
                 <div className="flex items-center gap-1">
@@ -136,7 +136,7 @@ export default function PatientTable({ patients: initialPatients, onPatientClick
                 </div>
               </th>
               <th 
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer"
                 onClick={() => handleSort('lastVisit')}
               >
                 <div className="flex items-center gap-1">
@@ -144,16 +144,16 @@ export default function PatientTable({ patients: initialPatients, onPatientClick
                   <SortIcon field="lastVisit" />
                 </div>
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Actions
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-200">
+          <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
             {filteredPatients.map((patient) => (
               <tr 
                 key={patient.id} 
-                className="hover:bg-gray-50 cursor-pointer"
+                className="hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
                 onClick={() => onPatientClick?.(patient)}
               >
                 <td className="px-6 py-4 whitespace-nowrap">
@@ -164,28 +164,28 @@ export default function PatientTable({ patients: initialPatients, onPatientClick
                       className="w-8 h-8 rounded-full object-cover"
                     />
                     <div className="ml-4">
-                      <div className="text-sm font-medium text-gray-900">{patient.name}</div>
-                      <div className="text-sm text-gray-500">{patient.age} years • {patient.gender}</div>
+                      <div className="text-sm font-medium text-secondary-900 dark:text-white">{patient.name}</div>
+                      <div className="text-sm text-secondary-500 dark:text-gray-400">{patient.age} years • {patient.gender}</div>
                     </div>
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">#{patient.id.padStart(6, '0')}</div>
+                  <div className="text-sm text-secondary-900 dark:text-white">#{patient.id.padStart(6, '0')}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">{patient.condition}</div>
+                  <div className="text-sm text-secondary-900 dark:text-white">{patient.condition}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span className={`px-3 py-1 rounded-full text-xs border ${statusColors[patient.status]}`}>
                     {patient.status}
                   </span>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-secondary-500 dark:text-gray-400">
                   {format(new Date(patient.lastVisit), 'MMM d, yyyy')}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-secondary-500 dark:text-gray-400">
                   <button 
-                    className="text-gray-400 hover:text-gray-600"
+                    className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
                     onClick={(e) => {
                       e.stopPropagation();
                       // Add additional actions menu logic here
