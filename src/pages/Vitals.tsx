@@ -39,8 +39,8 @@ export default function Vitals() {
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-start mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-secondary-900">Patient Vitals</h1>
-            <p className="text-secondary-600">Monitor real-time vital signs</p>
+            <h1 className="text-2xl font-bold text-secondary-900 dark:text-white">Patient Vitals</h1>
+            <p className="text-secondary-600 dark:text-gray-400">Monitor real-time vital signs</p>
           </div>
 
           <div className="flex items-center gap-4">
@@ -48,7 +48,7 @@ export default function Vitals() {
             <div className="relative">
               <button
                 onClick={() => setIsPatientDropdownOpen(!isPatientDropdownOpen)}
-                className="flex items-center gap-3 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50"
+                className="flex items-center gap-3 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
               >
                 <img
                   src={selectedPatient.image}
@@ -56,14 +56,14 @@ export default function Vitals() {
                   className="w-8 h-8 rounded-full object-cover"
                 />
                 <div className="text-left">
-                  <p className="text-sm font-medium text-secondary-900">{selectedPatient.name}</p>
-                  <p className="text-xs text-secondary-500">ID: #{selectedPatient.id.padStart(6, '0')}</p>
+                  <p className="text-sm font-medium text-secondary-900 dark:text-white">{selectedPatient.name}</p>
+                  <p className="text-xs text-secondary-500 dark:text-gray-400">ID: #{selectedPatient.id.padStart(6, '0')}</p>
                 </div>
                 <ChevronDown className="w-4 h-4 text-secondary-400" />
               </button>
 
               {isPatientDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-72 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                <div className="absolute right-0 mt-2 w-72 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-10">
                   <div className="p-2">
                     {patients.map(patient => (
                       <button
@@ -72,7 +72,7 @@ export default function Vitals() {
                           setSelectedPatient(patient);
                           setIsPatientDropdownOpen(false);
                         }}
-                        className="flex items-center gap-3 w-full p-2 hover:bg-gray-50 rounded-lg"
+                        className="flex items-center gap-3 w-full p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg"
                       >
                         <img
                           src={patient.image}
@@ -80,8 +80,8 @@ export default function Vitals() {
                           className="w-8 h-8 rounded-full object-cover"
                         />
                         <div className="text-left">
-                          <p className="text-sm font-medium text-secondary-900">{patient.name}</p>
-                          <p className="text-xs text-secondary-500">ID: #{patient.id.padStart(6, '0')}</p>
+                          <p className="text-sm font-medium text-secondary-900 dark:text-white">{patient.name}</p>
+                          <p className="text-xs text-secondary-500 dark:text-gray-400">ID: #{patient.id.padStart(6, '0')}</p>
                         </div>
                       </button>
                     ))}
@@ -94,14 +94,14 @@ export default function Vitals() {
             <select
               value={timeRange}
               onChange={(e) => setTimeRange(e.target.value)}
-              className="px-3 py-2 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="px-3 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
             >
               <option value="24h">Last 24 Hours</option>
               <option value="7d">Last 7 Days</option>
               <option value="30d">Last 30 Days</option>
             </select>
 
-            <button className="inline-flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg text-secondary-600 hover:bg-gray-50">
+            <button className="inline-flex items-center gap-2 px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-secondary-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700">
               <Download className="w-4 h-4" />
               <span>Export Data</span>
             </button>
@@ -109,29 +109,29 @@ export default function Vitals() {
         </div>
 
         {/* Patient Info Card */}
-        <div className="bg-white rounded-xl border border-gray-200 p-4 mb-8">
+        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 mb-8">
           <div className="flex items-center gap-4">
             <img
               src={selectedPatient.image}
               alt={selectedPatient.name}
-              className="w-16 h-16 rounded-full object-cover border-2 border-gray-100"
+              className="w-16 h-16 rounded-full object-cover border-2 border-gray-100 dark:border-gray-700"
             />
             <div>
-              <h2 className="text-xl font-semibold text-secondary-900">{selectedPatient.name}</h2>
-              <p className="text-secondary-600">
+              <h2 className="text-xl font-semibold text-secondary-900 dark:text-white">{selectedPatient.name}</h2>
+              <p className="text-secondary-600 dark:text-gray-400">
                 {selectedPatient.age} years • {selectedPatient.gender} • {selectedPatient.condition}
               </p>
               <div className="flex items-center gap-2 mt-1">
                 <span className={`px-2 py-1 rounded-full text-sm ${
                   selectedPatient.status === 'Stable'
-                    ? 'bg-green-50 text-green-700'
+                    ? 'bg-green-50 text-green-700 dark:bg-green-900 dark:text-green-200'
                     : selectedPatient.status === 'Critical'
-                    ? 'bg-red-50 text-red-700'
-                    : 'bg-amber-50 text-amber-700'
+                    ? 'bg-red-50 text-red-700 dark:bg-red-900 dark:text-red-200'
+                    : 'bg-amber-50 text-amber-700 dark:bg-amber-900 dark:text-amber-200'
                 }`}>
                   {selectedPatient.status}
                 </span>
-                <span className="text-sm text-secondary-500">Last updated: 5 minutes ago</span>
+                <span className="text-sm text-secondary-500 dark:text-gray-400">Last updated: 5 minutes ago</span>
               </div>
             </div>
           </div>
@@ -145,7 +145,7 @@ export default function Vitals() {
               unit: 'BPM',
               icon: Heart,
               color: 'text-red-500',
-              bg: 'bg-red-50',
+              bg: 'bg-red-50 dark:bg-red-900',
               trend: '+2 from last reading'
             },
             {
@@ -154,7 +154,7 @@ export default function Vitals() {
               unit: 'mmHg',
               icon: Activity,
               color: 'text-primary-500',
-              bg: 'bg-primary-50',
+              bg: 'bg-primary-50 dark:bg-primary-900',
               trend: 'Stable'
             },
             {
@@ -163,7 +163,7 @@ export default function Vitals() {
               unit: '°C',
               icon: Thermometer,
               color: 'text-amber-500',
-              bg: 'bg-amber-50',
+              bg: 'bg-amber-50 dark:bg-amber-900',
               trend: '+0.1 from last reading'
             },
             {
@@ -172,37 +172,37 @@ export default function Vitals() {
               unit: '%',
               icon: Droplets,
               color: 'text-blue-500',
-              bg: 'bg-blue-50',
+              bg: 'bg-blue-50 dark:bg-blue-900',
               trend: 'Normal range'
             }
           ].map(({ label, value, unit, icon: Icon, color, bg, trend }) => (
-            <div key={label} className="bg-white rounded-xl border border-gray-200 p-4">
+            <div key={label} className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-secondary-600 text-sm">{label}</span>
+                <span className="text-secondary-600 dark:text-gray-400 text-sm">{label}</span>
                 <div className={`${bg} p-2 rounded-lg`}>
                   <Icon className={`w-5 h-5 ${color}`} />
                 </div>
               </div>
               <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-bold text-secondary-900">{value}</span>
-                <span className="text-secondary-600">{unit}</span>
+                <span className="text-2xl font-bold text-secondary-900 dark:text-white">{value}</span>
+                <span className="text-secondary-600 dark:text-gray-400">{unit}</span>
               </div>
-              <p className="text-sm text-secondary-500 mt-2">{trend}</p>
+              <p className="text-sm text-secondary-500 dark:text-gray-400 mt-2">{trend}</p>
             </div>
           ))}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Heart Rate Chart */}
-          <div className="bg-white rounded-xl border border-gray-200 p-4">
+          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h2 className="font-semibold text-secondary-900">Heart Rate</h2>
-                <p className="text-sm text-secondary-500">24-hour monitoring</p>
+                <h2 className="font-semibold text-secondary-900 dark:text-white">Heart Rate</h2>
+                <p className="text-sm text-secondary-500 dark:text-gray-400">24-hour monitoring</p>
               </div>
               <div className="flex items-center gap-2 text-sm">
                 <Clock className="w-4 h-4 text-secondary-400" />
-                <span className="text-secondary-600">Real-time</span>
+                <span className="text-secondary-600 dark:text-gray-400">Real-time</span>
               </div>
             </div>
             <div className="h-[300px]">
@@ -226,15 +226,15 @@ export default function Vitals() {
           </div>
 
           {/* Blood Pressure Chart */}
-          <div className="bg-white rounded-xl border border-gray-200 p-4">
+          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h2 className="font-semibold text-secondary-900">Blood Pressure</h2>
-                <p className="text-sm text-secondary-500">Systolic & Diastolic</p>
+                <h2 className="font-semibold text-secondary-900 dark:text-white">Blood Pressure</h2>
+                <p className="text-sm text-secondary-500 dark:text-gray-400">Systolic & Diastolic</p>
               </div>
               <div className="flex items-center gap-2 text-sm">
                 <TrendingUp className="w-4 h-4 text-secondary-400" />
-                <span className="text-secondary-600">Trending</span>
+                <span className="text-secondary-600 dark:text-gray-400">Trending</span>
               </div>
             </div>
             <div className="h-[300px]">
