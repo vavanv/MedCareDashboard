@@ -4,52 +4,78 @@ import PatientTable from '../components/PatientTable';
 import AddPatientForm from '../components/AddPatientForm';
 import { patients as initialPatients } from '../data';
 import { Patient } from '../types';
+import { Box, Button, Stack } from '@mui/material';
 
-export default function Patients({ onPatientClick }: PatientsProps) {
+export default function Patients({ onPatientClick }: { onPatientClick: (patient: Patient) => void }) {
   const [patients, setPatients] = useState(initialPatients);
   const [isAddFormOpen, setIsAddFormOpen] = useState(false);
 
   const handleAddPatient = (newPatient: Patient) => {
     setPatients(prev => [...prev, newPatient]);
+    setIsAddFormOpen(false);
   };
 
   return (
-    <div className="p-8">
+    <Box sx={{ p: 3 }}>
       <AddPatientForm
         isOpen={isAddFormOpen}
         onClose={() => setIsAddFormOpen(false)}
         onSubmit={handleAddPatient}
       />
       
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-          <div>
+      <Box sx={{ maxWidth: '100%', mx: 'auto' }}>
+        <Box sx={{ 
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          justifyContent: 'space-between',
+          alignItems: { sm: 'center' },
+          gap: 2,
+          mb: 4
+        }}>
+          <Box>
             <h1 className="text-2xl font-bold text-secondary-900 dark:text-white">Patients</h1>
             <p className="text-secondary-600 dark:text-gray-400">Manage and view patient records</p>
-          </div>
+          </Box>
           
-          <div className="flex gap-3">
-            <button className="inline-flex items-center gap-2 px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-secondary-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700">
-              <Upload className="w-4 h-4" />
-              <span>Import</span>
-            </button>
-            <button className="inline-flex items-center gap-2 px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-secondary-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700">
-              <Download className="w-4 h-4" />
-              <span>Export</span>
-            </button>
-            <button 
-              onClick={() => setIsAddFormOpen(true)}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700"
+          <Stack direction="row" spacing={2}>
+            <Button
+              variant="outlined"
+              startIcon={<Upload size={16} />}
+              sx={{ textTransform: 'none' }}
             >
-              <UserPlus className="w-4 h-4" />
-              <span>Add Patient</span>
-            </button>
-          </div>
-        </div>
+              Import
+            </Button>
+            <Button
+              variant="outlined"
+              startIcon={<Download size={16} />}
+              sx={{ textTransform: 'none' }}
+            >
+              Export
+            </Button>
+            <Button
+              variant="contained"
+              startIcon={<UserPlus size={16} />}
+              onClick={() => setIsAddFormOpen(true)}
+              sx={{ textTransform: 'none' }}
+            >
+              Add Patient
+            </Button>
+          </Stack>
+        </Box>
 
-        {/* Rest of the Patients component remains the same */}
-        <PatientTable patients={patients} onPatientClick={onPatientClick} />
-      </div>
-    </div>
+        <Box sx={{ 
+          height: 'calc(100vh - 200px)',
+          width: '100%',
+          backgroundColor: 'background.paper',
+          borderRadius: 2,
+          overflow: 'hidden'
+        }}>
+          <PatientTable 
+            patients={patients} 
+            onPatientClick={onPatientClick} 
+          />
+        </Box>
+      </Box>
+    </Box>
   );
 }
